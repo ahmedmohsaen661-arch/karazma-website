@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karazma - كاريزما للبدل الرجالية والتأجير</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Cairo & Tajawal) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#f3e5ab',
+                            DEFAULT: '#c5a059',
+                            dark: '#9a7b38',
+                        },
+                        darkBg: '#080a0f',
+                        cardBg: '#101622',
+                        navyAccent: '#0b1325'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #080a0f;
+            color: #f3f4f6;
+        }
+        h1, h2, h3, .font-title {
+            font-family: 'Tajawal', sans-serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #f3e5ab 0%, #c5a059 50%, #9a7b38 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-color: #c5a059;
+        }
+        .gold-btn {
+            background: linear-gradient(135deg, #c5a059 0%, #a37f3a 100%);
+            transition: all 0.3s ease;
+        }
+        .gold-btn:hover {
+            background: linear-gradient(135deg, #d8b268 0%, #c5a059 100%);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c5a059;
+        }
+    </style>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCjryAh_B11hFnYE9e-ux_FQ2IFo6bkzjY",
+            authDomain: "saadabarber.firebaseapp.com",
+            projectId: "saadabarber",
+            storageBucket: "saadabarber.firebasestorage.app",
+            messagingSenderId: "29595137155",
+            appId: "1:29595137155:web:3c8c8d75a05d254d6d97b6",
+            measurementId: "G-WX60BH0R6L"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+        window.FB_SDK = { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, onSnapshot };
+        
+        if(window.initApp) window.initApp();
+    </script>
+</head>
+<body class="antialiased selection:bg-gold selection:text-black">
+
+    <!-- Top Info Bar -->
+    <div class="bg-black/80 border-b border-gold/20 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2 container">
+            <div class="flex items-center gap-4 text-gray-300">
+                <span><i class="fa-solid fa-location-dot text-gold ml-1"></i> بردين - الشارع الرئيسي - بجوار المدرسة الإعدادية</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-clock text-gold ml-1"></i> يومياً من 11 صباحاً حتى 11 مساءً</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="tel:01007710789" class="hover:text-gold transition"><i class="fa-solid fa-phone text-gold ml-1"></i> كريم جلال: 01007710789</a>
+                <a href="tel:01009464614" class="hover:text-gold transition"><i class="fa-solid fa-phone text-gold ml-1"></i> أمير جلال: 01009464614</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Monetag Ad -->
+    <div class="container mx-auto px-4 mt-2">
+        <div class="bg-cardBg border border-dashed border-gold/20 rounded-xl p-2 text-center text-xs text-gray-400 overflow-hidden">
+            <span class="block mb-1 text-gold/70"><i class="fa-solid fa-ad ml-1"></i> إعلان ممول</span>
+            <script>(function(s){s.dataset.zone='12214473',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-darkBg/90 backdrop-blur-md border-b border-white/10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo (Click 5 times secretly to open admin panel) -->
+            <div onclick="handleLogoSecretClick()" class="flex items-center gap-3 cursor-pointer select-none">
+                <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center bg-black/50">
+                    <span class="text-gold font-bold text-xl font-title">K</span>
+                </div>
+                <div>
+                    <span class="text-2xl font-black tracking-wider text-white font-title">KARAZMA</span>
+                    <span class="block text-[10px] text-gold tracking-widest uppercase">كاريزما للبدل وتأجير أرقى الموديلات</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#hero" class="hover:text-gold transition text-gold">الرئيسية</a>
+                <a href="#suits" class="hover:text-gold transition">كتالوج البدل</a>
+                <a href="#booking" class="hover:text-gold transition">حجز موعد الزيارة</a>
+                <a href="#reviews" class="hover:text-gold transition">آراء العملاء</a>
+                <a href="#contact" class="hover:text-gold transition">التواصل والموقع</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleOwnerView()" class="hidden md:flex items-center gap-1.5 text-xs text-gray-400 hover:text-gold transition px-2 py-1">
+                    <i class="fa-solid fa-user-shield text-gold"></i>
+                </button>
+                <a href="https://wa.me/201007710789" target="_blank" class="gold-btn text-black font-bold px-4 py-2 rounded-full text-xs flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> تواصل معنا
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-darkBg via-navyAccent/40 to-darkBg">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#c5a059_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-right">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold">
+                        <i class="fa-solid fa-crown text-gold"></i> أرقى تشكيلة بدل عرسان ورسمية للتأجير
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+                        إطلالتك الأنيقة تبدأ من <span class="gold-gradient-text">كاريزما</span>
+                    </h1>
+                    <p class="text-gray-400 text-base md:text-lg max-w-xl mx-auto lg:mx-0">
+                        نوفر لك أحدث صيحات البدل العالمية بأعلى الخامات التركية والأوروبية المتاحة <strong>للتأجير والتفصيل</strong>. احصل على مظهر ملكي يناسب ليلتك المميزة.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#suits" class="gold-btn text-black font-bold px-8 py-3.5 rounded-xl shadow-lg flex items-center gap-2">
+                            <i class="fa-solid fa-shirt"></i> استكشف الكتالوج
+                        </a>
+                        <a href="#booking" class="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-semibold px-6 py-3.5 rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-check text-gold"></i> احجز موعد زيارة القياس
+                        </a>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/10 max-w-md mx-auto lg:mx-0 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-gold font-title">+300</div>
+                            <div class="text-xs text-gray-400">موديل متوفر</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-gold font-title">100%</div>
+                            <div class="text-xs text-gray-400">خامات ممتازة</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-gold font-title">تأجير</div>
+                            <div class="text-xs text-gray-400">بأنسب الأسعار</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase -->
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-gold to-yellow-600 rounded-2xl blur opacity-20"></div>
+                    <div class="relative bg-cardBg border border-gold/20 rounded-2xl overflow-hidden p-3">
+                        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1000&q=80" alt="Karazma Suits" class="w-full h-[450px] object-cover rounded-xl">
+                        <div class="absolute bottom-6 right-6 left-6 bg-black/70 backdrop-blur-md border border-gold/30 p-4 rounded-xl text-right">
+                            <span class="text-xs text-gold font-bold uppercase tracking-wider">تأجير أرقى بدل العرسان</span>
+                            <h3 class="text-lg font-bold text-white">تشكيلة 2026 الحصرية متوفرة الآن في الفرع</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- ================= USER VIEW NOTIFICATIONS ================= -->
+        <div id="userNotificationsArea" class="max-w-4xl mx-auto mb-8 space-y-3">
+            <!-- Dynamic Notifications Loaded Here -->
+        </div>
+
+        <!-- ================= OWNER / ADMIN CONTROL PANEL (HIDDEN BY DEFAULT) ================= -->
+        <section id="ownerAdminPanel" class="hidden max-w-5xl mx-auto mb-16 bg-navyAccent border-2 border-gold/50 rounded-2xl p-6 md:p-8 shadow-2xl">
+            <div class="flex justify-between items-center pb-4 border-b border-gold/30 mb-6">
+                <div>
+                    <h2 class="text-xl font-bold text-gold flex items-center gap-2">
+                        <i class="fa-solid fa-user-shield"></i> لوحة تحكم المالك (كاريزما)
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1">إدارة الحجوزات الواردة وإضافة/تعديل بدل المعرض والكتالوج</p>
+                </div>
+                <button onclick="toggleOwnerView()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-4 py-1.5 rounded-xl text-xs transition">
+                    خروج من اللوحة
+                </button>
+            </div>
+
+            <!-- Owner Bookings Requests Box -->
+            <div class="mb-10 bg-darkBg border border-white/10 rounded-xl p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-bell text-gold"></i> الحجوزات المطلوبة من الزوار
+                    </h3>
+                    <span id="pendingBadgeCount" class="bg-gold text-black text-xs font-bold px-3 py-1 rounded-full">0 حجز معلق</span>
+                </div>
+                <div id="adminBookingsList" class="space-y-3">
+                    <p class="text-gray-500 text-center py-4 text-xs">جاري تحميل طلبات الحجز...</p>
+                </div>
+            </div>
+
+            <!-- Add/Edit Suit to Catalog Box -->
+            <div class="bg-darkBg border border-white/10 rounded-xl p-5">
+                <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-folder-plus text-gold"></i> إضافة بدلة جديدة لكتالوج المحل
+                </h3>
+                <form id="suitForm" onsubmit="handleSaveSuit(event)" class="space-y-4 mb-6">
+                    <input type="hidden" id="editingSuitId">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">اسم / عنوان البدلة</label>
+                            <input type="text" id="suitName" required class="w-full bg-navyAccent border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:border-gold focus:outline-none" placeholder="مثال: بدلة سموكنغ كحلي إيطالي">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">السعر للإيجار (اختياري)</label>
+                            <input type="number" id="suitPrice" class="w-full bg-navyAccent border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:border-gold focus:outline-none" placeholder="أدخل السعر أو اتركه فارغاً">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">صورة البدلة</label>
+                            <input type="file" id="suitImage" accept="image/*" class="w-full bg-navyAccent border border-white/10 rounded-xl px-3 py-2 text-xs text-gray-300 focus:border-gold focus:outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1">وصف البدلة وتفاصيل الخامات والمقاسات</label>
+                        <textarea id="suitDesc" rows="2" required class="w-full bg-navyAccent border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:border-gold focus:outline-none" placeholder="ياقة ساتان فاخرة، مقاسات متوفرة S - 3XL..."></textarea>
+                    </div>
+                    <div class="flex gap-2">
+                        <button type="submit" class="gold-btn text-black font-bold px-5 py-2 rounded-xl text-xs transition cursor-pointer">
+                            <i class="fa-solid fa-save ml-1"></i> حفظ البدلة بالكتالوج
+                        </button>
+                        <button type="button" onclick="resetSuitForm()" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-xl text-xs transition">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+
+                <h4 class="text-xs font-semibold text-gray-400 mb-3">البدل المعروضة حالياً بالكتالوج:</h4>
+                <div id="adminSuitsList" class="space-y-3 max-h-80 overflow-y-auto">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SUITS CATALOG SECTION -->
+        <section id="suits" class="py-12 bg-darkBg">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-gold text-xs font-bold uppercase tracking-widest">مجموعة كاريزما الحصرية</span>
+                    <h2 class="text-3xl font-bold mt-1">كتالوج البدل المتاحة <span class="gold-gradient-text">للتأجير والتفصيل</span></h2>
+                </div>
+            </div>
+
+            <!-- Suits Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="customerSuitsGrid">
+                <p class="text-gray-500 col-span-full text-center py-8 text-sm">جاري تحميل بدل المعرض...</p>
+            </div>
+        </section>
+
+        <!-- BOOKING APPOINTMENT SECTION -->
+        <section id="booking" class="py-16 bg-navyAccent border-t border-white/10 rounded-2xl my-12 relative">
+            <div class="container mx-auto px-4 max-w-3xl">
+                <div class="bg-cardBg border border-gold/30 rounded-2xl p-6 md:p-10 shadow-2xl">
+                    <div class="text-center mb-8">
+                        <span class="text-gold text-xs font-bold uppercase tracking-widest">تأكيد حضورك ومقاسك</span>
+                        <h2 class="text-3xl font-bold mt-2">احجز موعد <span class="gold-gradient-text">القياس والمعاينة</span></h2>
+                        <p class="text-gray-400 text-sm mt-1">احجز زيارتك للمحل وسيتم إرسال إشعار للمالك بالموعد وإخطارك بالرد داخل الموقع</p>
+                    </div>
+
+                    <form onsubmit="handleVisitorBooking(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-300 font-semibold mb-1">الاسم بالكامل:</label>
+                                <input type="text" id="book-name" required placeholder="أدخل اسمك الكريم" class="w-full bg-darkBg border border-white/20 rounded-xl px-4 py-3 text-sm focus:border-gold focus:outline-none text-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-300 font-semibold mb-1">رقم الهاتف التواصل:</label>
+                                <input type="tel" id="book-phone" required placeholder="010xxxxxxx" class="w-full bg-darkBg border border-white/20 rounded-xl px-4 py-3 text-sm focus:border-gold focus:outline-none text-white">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-300 font-semibold mb-1">نوع الخدمة المطلوب:</label>
+                                <select id="book-type" class="w-full bg-darkBg border border-white/20 rounded-xl px-4 py-3 text-sm focus:border-gold focus:outline-none text-white">
+                                    <option value="تأجير بدلة عريس">تأجير بدلة عريس</option>
+                                    <option value="تأجير بدلة رسمية">تأجير بدلة رسمية</option>
+                                    <option value="شراء بدلة">شراء بدلة</option>
+                                    <option value="تفصيل خاص">تفصيل خاص</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-300 font-semibold mb-1">تاريخ المناسبة:</label>
+                                <input type="date" id="book-event-date" required class="w-full bg-darkBg border border-white/20 rounded-xl px-4 py-3 text-sm text-gray-200 focus:border-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-300 font-semibold mb-1">تاريخ ووقت زيارة المحل:</label>
+                                <input type="datetime-local" id="book-visit-date" required class="w-full bg-darkBg border border-white/20 rounded-xl px-4 py-3 text-sm text-gray-200 focus:border-gold focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-gray-300 font-semibold mb-1">الملاحظات أو اسم البدلة المطلوبة:</label>
+                            <textarea id="book-notes" rows="3" placeholder="اكتب هنا أي تفاصيل إضافية أو مقاس محدد تريد تجريبه..." class="w-full bg-darkBg border border-white/20 rounded-xl px-4 py-3 text-sm focus:border-gold focus:outline-none text-white"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full gold-btn text-black font-bold py-3.5 rounded-xl shadow-lg text-sm transition cursor-pointer">
+                            <i class="fa-solid fa-paper-plane ml-1"></i> إرسال حجز الموعد للمحل
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOMER REVIEWS SECTION -->
+        <section id="reviews" class="py-12 bg-darkBg">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-gold text-xs font-bold uppercase tracking-widest">شاركونا تجاربكم</span>
+                <h2 class="text-3xl font-bold mt-1">آراء وانطباعات <span class="gold-gradient-text">عملاء كاريزما</span></h2>
+                <p class="text-gray-400 text-sm mt-1">نسعد دائماً بخدمتكم ورأيكم يهمنا لتطوير خدمات التأجير والتفصيل</p>
+            </div>
+
+            <!-- Review Submission Form -->
+            <div class="max-w-2xl mx-auto bg-cardBg border border-gold/20 rounded-2xl p-6 mb-10">
+                <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square text-gold"></i> اضف رأيك وتجربتك معنا:
+                </h3>
+                <form onsubmit="addNewReview(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" id="review-author" required placeholder="اسمك الكريم" class="bg-darkBg border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-gold focus:outline-none text-white">
+                        <div>
+                            <select id="review-rating" class="w-full bg-darkBg border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-gold focus:outline-none text-white">
+                                <option value="5">⭐⭐⭐⭐⭐ (5/5) ممتاز جداً</option>
+                                <option value="4">⭐⭐⭐⭐ (4/5) جيد جداً</option>
+                                <option value="3">⭐⭐⭐ (3/5) مقبول</option>
+                            </select>
+                        </div>
+                    </div>
+                    <textarea id="review-text" required rows="3" placeholder="اكتب تعليقك أو تجربتك في استئجار/تفصيل البدلة من كاريزما..." class="w-full bg-darkBg border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-gold focus:outline-none text-white"></textarea>
+                    <button type="submit" class="gold-btn text-black font-bold px-6 py-2.5 rounded-xl text-xs">نشر الرأي بالموقع</button>
+                </form>
+            </div>
+
+            <!-- Dynamic Reviews Grid Container -->
+            <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- User added reviews will dynamically populate here -->
+            </div>
+        </section>
+
+        <!-- CONTACT & LOCATION SECTION -->
+        <section id="contact" class="py-12 bg-cardBg border-t border-white/10 rounded-2xl">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <div class="space-y-6">
+                        <span class="text-gold text-xs font-bold uppercase tracking-widest">تواصل مع الإدارة مباشرة</span>
+                        <h2 class="text-3xl font-bold">زورونا في <span class="gold-gradient-text">محل كاريزما</span></h2>
+                        <p class="text-gray-400 text-sm">نحن بانتظاركم لتقديم أفضل خدمة واستشارة لاختيار وتجهيز أحدث البدل المناسبة لكم.</p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start gap-4 p-4 bg-darkBg border border-white/10 rounded-xl">
+                                <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-location-dot text-gold"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">العنوان الفرع الرئيسي:</h4>
+                                    <p class="text-xs text-gray-400 mt-1">بردين - الشارع الرئيسي - بجوار المدرسة الإعدادية - الشرقية</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 bg-darkBg border border-white/10 rounded-xl">
+                                <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-phone text-gold"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">أرقام التواصل والإدارة:</h4>
+                                    <p class="text-xs text-gray-400 mt-1">كريم جلال: <a href="tel:01007710789" class="text-gold dir-ltr inline-block">01007710789</a></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">أمير جلال: <a href="tel:01009464614" class="text-gold dir-ltr inline-block">01009464614</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Visual / Map Box -->
+                    <div class="bg-darkBg border border-gold/20 rounded-2xl p-6 text-center space-y-4">
+                        <i class="fa-solid fa-store text-5xl text-gold"></i>
+                        <h3 class="text-xl font-bold text-white">معرض ومحلات كاريزما للبدل</h3>
+                        <p class="text-xs text-gray-400">يسعدنا استقبالكم يومياً لاختيار مقاساتكم وتجربة البدل على أرض الواقع</p>
+                        <a href="https://wa.me/201007710789" target="_blank" class="gold-btn inline-block text-black font-bold px-6 py-3 rounded-xl text-xs">
+                            <i class="fa-brands fa-whatsapp ml-1"></i> تواصل عبر الواتساب للموقع بالتحديد
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Monetag Ad -->
+    <div class="container mx-auto px-4 mb-4">
+        <div class="bg-cardBg border border-dashed border-gold/20 rounded-xl p-2 text-center text-xs text-gray-400 overflow-hidden">
+            <span class="block mb-1 text-gold/70"><i class="fa-solid fa-ad ml-1"></i> إعلان ممول</span>
+            <script>(function(s){s.dataset.zone='12214473',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gold/20 py-6 text-center text-xs text-gray-500">
+        جميع الحقوق محفوظة © لمحلات كاريزما للبدل الرجالية والتأجير 2026
+    </footer>
+
+    <!-- Application Script Logic -->
+    <script>
+        let isAdminView = false;
+        let logoClickCount = 0;
+        let logoClickTimer = null;
+        let bookingsData = [];
+        let suitsData = [];
+        let reviewsData = [];
+
+        window.initApp = function() {
+            const { collection, onSnapshot } = window.FB_SDK;
+
+            // Realtime Listener for Bookings
+            onSnapshot(collection(window.db, "karazma_bookings"), (snapshot) => {
+                bookingsData = [];
+                snapshot.forEach((docSnap) => {
+                    bookingsData.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                bookingsData.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+                
+                renderUserNotifications();
+                if(isAdminView) renderAdminBookings();
+            });
+
+            // Realtime Listener for Suits
+            onSnapshot(collection(window.db, "karazma_suits"), (snapshot) => {
+                suitsData = [];
+                snapshot.forEach((docSnap) => {
+                    suitsData.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                renderCustomerSuits();
+                if(isAdminView) renderAdminSuits();
+            });
+
+            // Realtime Listener for Reviews
+            onSnapshot(collection(window.db, "karazma_reviews"), (snapshot) => {
+                reviewsData = [];
+                snapshot.forEach((docSnap) => {
+                    reviewsData.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                renderReviews();
+            });
+        };
+
+        // Secret click trigger on Logo
+        function handleLogoSecretClick() {
+            logoClickCount++;
+            clearTimeout(logoClickTimer);
+            if (logoClickCount >= 5) {
+                logoClickCount = 0;
+                toggleOwnerView();
+            } else {
+                logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 2000);
+            }
+        }
+
+        function toggleOwnerView() {
+            if (!isAdminView) {
+                const password = prompt('أدخل كلمة المرور الخاصة بالإدارة:');
+                if (password === null) return;
+                if (password !== '100100') {
+                    alert('كلمة المرور غير صحيحة!');
+                    return;
+                }
+            }
+
+            isAdminView = !isAdminView;
+            const panel = document.getElementById('ownerAdminPanel');
+            if (isAdminView) {
+                panel.classList.remove('hidden');
+                panel.scrollIntoView({ behavior: 'smooth' });
+                renderAdminBookings();
+                renderAdminSuits();
+            } else {
+                panel.classList.add('hidden');
+            }
+        }
+
+        // --- Visitor Bookings ---
+        async function handleVisitorBooking(e) {
+            e.preventDefault();
+            const name = document.getElementById('book-name').value;
+            const phone = document.getElementById('book-phone').value;
+            const type = document.getElementById('book-type').value;
+            const eventDate = document.getElementById('book-event-date').value;
+            const visitDate = document.getElementById('book-visit-date').value;
+            const notes = document.getElementById('book-notes').value || '';
+
+            const booking = {
+                name,
+                phone,
+                type,
+                eventDate,
+                visitDate,
+                notes,
+                status: 'pending',
+                createdAt: Date.now()
+            };
+
+            await window.FB_SDK.addDoc(window.FB_SDK.collection(window.db, "karazma_bookings"), booking);
+            localStorage.setItem('karazma_user_phone', phone);
+            
+            alert('تم إرسال طلب الحجز بنجاح! سيصل إشعار للمالك بالمحل لمراجعة وتأكيد الموعد.');
+            e.target.reset();
+        }
+
+        async function approveBooking(id) {
+            await window.FB_SDK.updateDoc(window.FB_SDK.doc(window.db, "karazma_bookings", id), {
+                status: 'approved',
+                updatedAt: Date.now()
+            });
+            alert('تم تأكيد الحجز للمستخدم.');
+        }
+
+        async function modifyBooking(id) {
+            const newDate = prompt('أدخل موعد الزيارة الجديد المناسب للمحل (تاريخ وساعة):');
+            if(!newDate) return;
+
+            await window.FB_SDK.updateDoc(window.FB_SDK.doc(window.db, "karazma_bookings", id), {
+                visitDate: newDate,
+                status: 'modified',
+                updatedAt: Date.now()
+            });
+            alert('تم تعديل موعد الزيارة وإشعارات العميل بالموعد الجديد.');
+        }
+
+        async function deleteBooking(id) {
+            if(confirm('هل تريد حذف هذا الحجز؟')) {
+                await window.FB_SDK.deleteDoc(window.FB_SDK.doc(window.db, "karazma_bookings", id));
+            }
+        }
+
+        function renderUserNotifications() {
+            const area = document.getElementById('userNotificationsArea');
+            const userPhone = localStorage.getItem('karazma_user_phone');
+            if(!userPhone) {
+                area.innerHTML = '';
+                return;
+            }
+
+            const myBookings = bookingsData.filter(b => b.phone === userPhone);
+            if(myBookings.length === 0) {
+                area.innerHTML = '';
+                return;
+            }
+
+            area.innerHTML = myBookings.map(b => {
+                if(b.status === 'approved') {
+                    return `
+                        <div class="bg-emerald-500/10 border border-emerald-500/50 rounded-xl p-4 text-emerald-300 text-sm">
+                            <i class="fa-solid fa-circle-check ml-2 text-lg"></i>
+                            <strong>تم تأكيد موعدك!</strong> أهلًا بك يا ${b.name}، تم تأكيد موعد زيارتك لمعاينة البدلة بتاريخ: <strong>${formatDT(b.visitDate)}</strong>.
+                        </div>
+                    `;
+                } else if(b.status === 'modified') {
+                    return `
+                        <div class="bg-amber-500/10 border border-amber-500/50 rounded-xl p-4 text-amber-300 text-sm">
+                            <i class="fa-solid fa-clock-rotate-left ml-2 text-lg"></i>
+                            <strong>تم تعديل الموعد من المحل:</strong> مرحبًا ${b.name}، اقتراح المحل الجديد لزيارتك هو: <strong>${b.visitDate}</strong>.
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="bg-navyAccent border border-white/10 rounded-xl p-4 text-gray-300 text-sm">
+                            <i class="fa-solid fa-hourglass-half ml-2 text-gold"></i> حجزك بانتظار تأكيد المالك (موعد الزيارة المطلوب: ${formatDT(b.visitDate)}).
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+
+        function renderAdminBookings() {
+            const listEl = document.getElementById('adminBookingsList');
+            const pendingBadge = document.getElementById('pendingBadgeCount');
+            const pendingCount = bookingsData.filter(b => b.status === 'pending').length;
+            pendingBadge.textContent = `${pendingCount} حجز معلق`;
+
+            if (bookingsData.length === 0) {
+                listEl.innerHTML = `<p class="text-gray-500 text-center py-4 text-xs">لا توجد طلبات حجز مسجلة.</p>`;
+                return;
+            }
+
+            listEl.innerHTML = bookingsData.map((b) => `
+                <div class="bg-navyAccent p-4 rounded-xl border ${b.status === 'pending' ? 'border-gold/60' : 'border-white/10'} flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-white text-sm">${b.name}</span>
+                            <span class="px-2 py-0.5 rounded-full ${
+                                b.status === 'approved' ? 'bg-emerald-500/20 text-emerald-400' :
+                                b.status === 'modified' ? 'bg-sky-500/20 text-sky-400' : 'bg-gold/20 text-gold animate-pulse'
+                            }">
+                                ${b.status === 'approved' ? 'مؤكد' : b.status === 'modified' ? 'تم التعديل' : 'جديد'}
+                            </span>
+                        </div>
+                        <p class="text-gray-300"><strong>الهاتف:</strong> ${b.phone} | <strong>النوع:</strong> ${b.type}</p>
+                        <p class="text-gold mt-1"><strong>تاريخ المناسبة:</strong> ${b.eventDate} | <strong>تاريخ ووقت الزيارة:</strong> ${formatDT(b.visitDate)}</p>
+                        ${b.notes ? `<p class="text-gray-400 mt-1">ملاحظات: ${b.notes}</p>` : ''}
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        ${b.status !== 'approved' ? `
+                            <button onclick="approveBooking('${b.id}')" class="bg-emerald-600 hover:bg-emerald-500 text-black font-bold px-3 py-1.5 rounded-lg text-xs">
+                                <i class="fa-solid fa-check"></i> تأكيد
+                            </button>
+                        ` : ''}
+                        <button onclick="modifyBooking('${b.id}')" class="bg-sky-600 hover:bg-sky-500 text-black font-bold px-3 py-1.5 rounded-lg text-xs">
+                            <i class="fa-solid fa-pen"></i> تعديل الموعد
+                        </button>
+                        <button onclick="deleteBooking('${b.id}')" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs">
+                            <i class="fa-solid fa-trash"></i> مسح
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Suits Catalog ---
+        async function handleSaveSuit(e) {
+            e.preventDefault();
+            const id = document.getElementById('editingSuitId').value;
+            const name = document.getElementById('suitName').value;
+            const priceVal = document.getElementById('suitPrice').value;
+            const price = priceVal ? parseFloat(priceVal) : null;
+            const imageFile = document.getElementById('suitImage').files[0];
+            const desc = document.getElementById('suitDesc').value;
+            const existingSuit = id ? suitsData.find(s => s.id === id) : null;
+
+            if (!imageFile && !existingSuit) {
+                alert('يرجى اختيار صورة للبدلة.');
+                return;
+            }
+
+            try {
+                let image = existingSuit ? existingSuit.image : '';
+                if (imageFile) {
+                    image = await new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = () => reject(new Error('تعذرت قراءة ملف الصورة.'));
+                        reader.readAsDataURL(imageFile);
+                    });
+                }
+
+                const suitData = { name, price, image, desc, updatedAt: Date.now() };
+                if (id) {
+                    await window.FB_SDK.updateDoc(window.FB_SDK.doc(window.db, "karazma_suits", id), suitData);
+                } else {
+                    await window.FB_SDK.addDoc(window.FB_SDK.collection(window.db, "karazma_suits"), suitData);
+                }
+
+                resetSuitForm();
+                alert('تم حفظ البدلة بالكتالوج بنجاح!');
+            } catch (err) {
+                console.error(err);
+                alert('حدث خطأ أثناء حفظ البدلة.');
+            }
+        }
+
+        function editSuit(id) {
+            const suit = suitsData.find(s => s.id === id);
+            if (suit) {
+                document.getElementById('editingSuitId').value = suit.id;
+                document.getElementById('suitName').value = suit.name;
+                document.getElementById('suitPrice').value = suit.price !== null && suit.price !== undefined ? suit.price : '';
+                document.getElementById('suitDesc').value = suit.desc;
+            }
+        }
+
+        async function deleteSuit(id) {
+            if (confirm('هل أنت متأكد من حذف هذه البدلة؟')) {
+                await window.FB_SDK.deleteDoc(window.FB_SDK.doc(window.db, "karazma_suits", id));
+            }
+        }
+
+        function resetSuitForm() {
+            document.getElementById('suitForm').reset();
+            document.getElementById('editingSuitId').value = '';
+        }
+
+        function renderCustomerSuits() {
+            const gridEl = document.getElementById('customerSuitsGrid');
+            if (suitsData.length === 0) {
+                gridEl.innerHTML = `<p class="text-gray-500 col-span-full text-center py-8 text-sm">لا توجد بدل مضافة في الكتالوج حالياً.</p>`;
+                return;
+            }
+            gridEl.innerHTML = suitsData.map(s => `
+                <div class="suit-card group bg-cardBg border border-white/10 hover:border-gold/50 rounded-2xl overflow-hidden transition duration-300 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="${s.image}" alt="${s.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://via.placeholder.com/300?text=Suit'">
+                        <span class="absolute top-3 right-3 bg-black/80 text-gold text-xs px-3 py-1 rounded-full border border-gold/30">متاح للإيجار</span>
+                    </div>
+                    <div class="p-5 space-y-3 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg text-white">${s.name}</h3>
+                            <p class="text-xs text-gray-400 mt-1 leading-relaxed">${s.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-white/10 pt-3 mt-4">
+                            <span class="text-sm font-bold text-gold">${s.price ? s.price + ' ج.م' : 'السعر عند التواصل'}</span>
+                            <a href="#booking" class="gold-btn text-black font-bold px-3 py-1.5 rounded-lg text-xs">طلب حجز الموعد</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminSuits() {
+            const listEl = document.getElementById('adminSuitsList');
+            if (suitsData.length === 0) {
+                listEl.innerHTML = `<p class="text-gray-500 text-center py-4 text-xs">لا توجد بدل مضافة.</p>`;
+                return;
+            }
+            listEl.innerHTML = suitsData.map(s => `
+                <div class="bg-navyAccent p-3 rounded-xl border border-white/10 flex items-center justify-between gap-4 text-xs">
+                    <div class="flex items-center gap-3">
+                        <img src="${s.image}" class="w-12 h-12 rounded-lg object-cover" onerror="this.src='https://via.placeholder.com/50'">
+                        <div>
+                            <span class="font-bold text-white block">${s.name}</span>
+                            <span class="text-gold block">${s.price ? s.price + ' ج.م' : 'السعر عند التواصل'}</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editSuit('${s.id}')" class="bg-sky-600 hover:bg-sky-500 text-black px-3 py-1 rounded-lg text-xs font-bold">تعديل</button>
+                        <button onclick="deleteSuit('${s.id}')" class="bg-rose-600 hover:bg-rose-500 text-white px-3 py-1 rounded-lg text-xs font-bold">حذف</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Reviews ---
+        async function addNewReview(e) {
+            e.preventDefault();
+            const author = document.getElementById('review-author').value;
+            const rating = parseInt(document.getElementById('review-rating').value);
+            const text = document.getElementById('review-text').value;
+
+            await window.FB_SDK.addDoc(window.FB_SDK.collection(window.db, "karazma_reviews"), {
+                author,
+                rating,
+                text,
+                createdAt: Date.now()
+            });
+
+            e.target.reset();
+            alert('شكراً لك! تم نشر رأيك بالموقع بنجاح.');
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            if(reviewsData.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-8 text-gray-500 border border-dashed border-white/10 rounded-xl">
+                        <i class="fa-solid fa-comments text-3xl mb-2 text-gold/50"></i>
+                        <p class="text-sm">لا توجد مراجعات مضافة بعد. كن أول من يكتب رأيه أعلاه!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = reviewsData.map(r => `
+                <div class="bg-cardBg border border-white/10 rounded-2xl p-5 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-white text-sm">${r.author}</h4>
+                        <span class="text-xs text-gold">${'⭐'.repeat(r.rating || 5)}</span>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed">${r.text}</p>
+                </div>
+            `).join('');
+        }
+
+        function formatDT(dt) {
+            if(!dt) return 'غير محدد';
+            return dt.replace('T', ' الوقت: ');
+        }
+    </script>
+</body>
+</html>
