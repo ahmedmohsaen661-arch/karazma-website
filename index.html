@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karazma - كاريزما للبدل الرجالية والتأجير</title>
+    <!-- Monetag Verification Meta Tag -->
+    <meta name="monetag" content="808fee6e486693983bebbea72981b637">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -73,19 +75,19 @@
         }
     </style>
 
-    <!-- Firebase SDKs -->
+    <!-- Firebase SDKs & Your Correct Config -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyCjryAh_B11hFnYE9e-ux_FQ2IFo6bkzjY",
-            authDomain: "saadabarber.firebaseapp.com",
-            projectId: "saadabarber",
-            storageBucket: "saadabarber.firebasestorage.app",
-            messagingSenderId: "29595137155",
-            appId: "1:29595137155:web:3c8c8d75a05d254d6d97b6",
-            measurementId: "G-WX60BH0R6L"
+            apiKey: "AIzaSyD0x1VvM-xGUO-i45C1DbGl6_5ZwszYPRU",
+            authDomain: "karizma-47182.firebaseapp.com",
+            projectId: "karizma-47182",
+            storageBucket: "karizma-47182.firebasestorage.app",
+            messagingSenderId: "756046553446",
+            appId: "1:756046553446:web:0ebb32043772af4ec2a8a7",
+            measurementId: "G-BWSDDYX8MY"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -112,7 +114,7 @@
         </div>
     </div>
 
-    <!-- Top Monetag Ad -->
+    <!-- Top Monetag Ad Banner -->
     <div class="container mx-auto px-4 mt-2">
         <div class="bg-cardBg border border-dashed border-gold/20 rounded-xl p-2 text-center text-xs text-gray-400 overflow-hidden">
             <span class="block mb-1 text-gold/70"><i class="fa-solid fa-ad ml-1"></i> إعلان ممول</span>
@@ -123,7 +125,7 @@
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-40 bg-darkBg/90 backdrop-blur-md border-b border-white/10">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- Logo (Click 5 times secretly to open admin panel) -->
+            <!-- Logo (Click 5 times secretly to open admin panel with password 100100) -->
             <div onclick="handleLogoSecretClick()" class="flex items-center gap-3 cursor-pointer select-none">
                 <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center bg-black/50">
                     <span class="text-gold font-bold text-xl font-title">K</span>
@@ -145,7 +147,7 @@
 
             <!-- Actions -->
             <div class="flex items-center gap-3">
-                <button onclick="toggleOwnerView()" class="hidden md:flex items-center gap-1.5 text-xs text-gray-400 hover:text-gold transition px-2 py-1">
+                <button onclick="toggleOwnerView()" class="hidden md:flex items-center gap-1.5 text-xs text-gray-400 hover:text-gold transition px-2 py-1" title="دخول المالك">
                     <i class="fa-solid fa-user-shield text-gold"></i>
                 </button>
                 <a href="https://wa.me/201007710789" target="_blank" class="gold-btn text-black font-bold px-4 py-2 rounded-full text-xs flex items-center gap-2">
@@ -219,7 +221,7 @@
             <!-- Dynamic Notifications Loaded Here -->
         </div>
 
-        <!-- ================= OWNER / ADMIN CONTROL PANEL (HIDDEN BY DEFAULT) ================= -->
+        <!-- ================= OWNER / ADMIN CONTROL PANEL (HIDDEN BY DEFAULT - PASSWORD 100100) ================= -->
         <section id="ownerAdminPanel" class="hidden max-w-5xl mx-auto mb-16 bg-navyAccent border-2 border-gold/50 rounded-2xl p-6 md:p-8 shadow-2xl">
             <div class="flex justify-between items-center pb-4 border-b border-gold/30 mb-6">
                 <div>
@@ -500,7 +502,7 @@
             });
         };
 
-        // Secret click trigger on Logo
+        // Secret click trigger on Logo (5 times)
         function handleLogoSecretClick() {
             logoClickCount++;
             clearTimeout(logoClickTimer);
